@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: registry-service
+
+server:
+  port: 8761
+
+eureka:
+  server:
+    enableSelfPreservation: false
+    evictionIntervalTimerInMs: 15000
+    registrySyncRetries: 5
+  client:
+    fetchRegistry: false #inhabilitamos esto porque es el servicio que tendrá
+     # los registros de los demás microservicios
+    registerWithEureka: false
+    registryFetchIntervalSeconds: 5
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    preferIpAddress: false
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 10

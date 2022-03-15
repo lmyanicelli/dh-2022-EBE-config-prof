@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: subscription-service
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+  sql:
+    init:
+      dataLocations: classpath:/plans.sql, classpath:/subscriptions.sql
+  jpa:
+    deferDatasourceInitialization: true
+    hibernate:
+      ddlAuto: create-drop
+
+server:
+  port: ${SERVER_PORT:8081}
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    registryFetchIntervalSeconds: 5
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    preferIpAddress: false
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 10
